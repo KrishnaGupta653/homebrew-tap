@@ -16,14 +16,14 @@ class MoxCli < Formula
   depends_on "ffmpeg" => :recommended
 
   def install
-    # Install main executable
-    bin.install "mox"
-    
     # Install source files
     libexec.install Dir["src/*"]
     
     # Install scripts
     libexec.install Dir["scripts/*"]
+    
+    # Install main executable to libexec
+    libexec.install "mox"
     
     # Create wrapper script that points to the actual implementation
     (bin/"mox").write <<~EOS

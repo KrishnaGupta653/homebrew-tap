@@ -1,4 +1,4 @@
-class Mox < Formula
+class MoxCli < Formula
   desc "Terminal music CLI with web UI and extensive features"
   homepage "https://github.com/KrishnaGupta653/mox"
   url "https://github.com/KrishnaGupta653/mox/archive/v6.0.4.tar.gz"

@@ -1,8 +1,8 @@
 class MoxCli < Formula
   desc "Terminal music CLI with web UI and extensive features"
   homepage "https://github.com/KrishnaGupta653/mox"
-  url "https://github.com/KrishnaGupta653/mox/archive/v6.0.4.tar.gz"
-  sha256 "56c5ecd40cd1f929d1a0fe27b1121b183703cf26badce786fd326055d73d5c04"
+  url "https://github.com/KrishnaGupta653/mox/archive/v6.0.6.tar.gz"
+  sha256 "8630a3c40b34c2ff74391d731bd28e48bb66f24c8bd5ef2e5d53a1771af7231a"
   license "MIT"
   head "https://github.com/KrishnaGupta653/mox.git", branch: "main"
 

@@ -1,14 +1,15 @@
 class MoxCli < Formula
   desc "Terminal music CLI with web UI and extensive features"
   homepage "https://github.com/KrishnaGupta653/mox"
-  url "https://github.com/KrishnaGupta653/mox/archive/v7.2.2.tar.gz"
-  sha256 "c2a6b37755b919a4a0bf641b3fa396180b277d9ea793521851235e31819917e0"
+  url "https://github.com/KrishnaGupta653/mox/archive/v8.0.0.tar.gz"
+  sha256 "0005e8e10d468e4e49cac73bb779f9b191d1936a77adf10b8944bb0d909cf1fa"
   license "MIT"
   head "https://github.com/KrishnaGupta653/mox.git", branch: "main"
 
   depends_on "mpv"
   depends_on "curl"
   depends_on "jq"
+  depends_on "socat"
   depends_on "python@3.11"
   depends_on "yt-dlp" => :recommended
   depends_on "fzf" => :recommended
@@ -56,8 +57,16 @@ class MoxCli < Formula
   end
 
   def post_install
-    # Run installation script (skip if it doesn't exist or fails)
-    system "#{libexec}/install.sh" if File.exist?("#{libexec}/install.sh") rescue nil
+    # Run installation script if present; a non-zero exit is non-fatal
+    # (the script only creates convenience directories, not required for mox to work)
+    install_script = libexec/"install.sh"
+    if install_script.exist?
+      begin
+        system install_script.to_s
+      rescue => e
+        opoo "post-install script failed (non-fatal): #{e.message}"
+      end
+    end
     
     puts <<~EOS
       🎵 mox has been installed!
@@ -91,7 +100,7 @@ class MoxCli < Formula
     <<~EOS
       To use all features of mox, you may want to install additional dependencies:
       
-        brew install yt-dlp fzf chafa ffmpeg socat
+        brew install yt-dlp fzf chafa ffmpeg
       
       For YouTube support, consider setting up API keys:
         https://github.com/KrishnaGupta653/mox#configuration

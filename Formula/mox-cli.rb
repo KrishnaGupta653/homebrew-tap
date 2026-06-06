@@ -1,8 +1,8 @@
 class MoxCli < Formula
   desc "Terminal music CLI with web UI and extensive features"
   homepage "https://github.com/KrishnaGupta653/mox"
-  url "https://github.com/KrishnaGupta653/mox/archive/v8.0.0.tar.gz"
-  sha256 "0005e8e10d468e4e49cac73bb779f9b191d1936a77adf10b8944bb0d909cf1fa"
+  url "https://github.com/KrishnaGupta653/mox/archive/v8.0.1.tar.gz"
+  sha256 "PLACEHOLDER_UPDATE_AFTER_GITHUB_RELEASE"  # Run: curl -sL https://github.com/KrishnaGupta653/mox/archive/v8.0.1.tar.gz | shasum -a 256
   license "MIT"
   head "https://github.com/KrishnaGupta653/mox.git", branch: "main"
 
@@ -62,7 +62,10 @@ class MoxCli < Formula
     install_script = libexec/"install.sh"
     if install_script.exist?
       begin
-        system install_script.to_s
+        # Ensure the script is executable
+        chmod 0755, install_script
+        # Run with explicit bash to avoid shell compatibility issues
+        system "/bin/bash", install_script.to_s
       rescue => e
         opoo "post-install script failed (non-fatal): #{e.message}"
       end

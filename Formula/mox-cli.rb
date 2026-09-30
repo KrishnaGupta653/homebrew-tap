@@ -1,8 +1,8 @@
 class MoxCli < Formula
   desc "Terminal music CLI with web UI and extensive features"
   homepage "https://github.com/KrishnaGupta653/mox"
-  url "https://github.com/KrishnaGupta653/mox/archive/v8.0.1.tar.gz"
-  sha256 "67bc1dc20e0a6b8472e3fa576edeef92fbd76650230e39299ec3f371252a99fb"
+  url "https://github.com/KrishnaGupta653/mox/archive/v8.0.3.tar.gz"
+  sha256 "de38b560203f64647b6f43fffbb9fc88938fb15e7b32f0f19c3fc8926e41e62e"
   license "MIT"
   head "https://github.com/KrishnaGupta653/mox.git", branch: "main"
 
@@ -25,6 +25,8 @@ class MoxCli < Formula
     
     # Install main executable to libexec
     libexec.install "mox"
+    # `mox --version`, help and doctor read this
+    libexec.install "VERSION"
     
     # Create wrapper script that points to the actual implementation
     (bin/"mox").write <<~EOS
